@@ -1,0 +1,131 @@
+{
+  "description": "Minimal ComfyUI API-format example for KoO Carousel Prompt Manager. Replace YOUR_CHECKPOINT.safetensors with any compatible checkpoint in your installation.",
+  "prompt": {
+    "1": {
+      "class_type": "KoOCarouselPromptManager",
+      "inputs": {
+        "active_prompts": 3,
+        "prompt_1": "A quiet studio scene with soft window light.",
+        "prompt_2": "A neon city street after rain, reflective pavement.",
+        "prompt_3": "A minimal product photo on a clean tabletop.",
+        "prompt_4": "Prepared inactive prompt slot.",
+        "prompt_5": "",
+        "prompt_6": "",
+        "base_seed": 1000,
+        "seed_mode": "Increment",
+        "filename_prefix": "KoO_Carousel"
+      }
+    },
+    "2": {
+      "class_type": "CheckpointLoaderSimple",
+      "inputs": {
+        "ckpt_name": "YOUR_CHECKPOINT.safetensors"
+      }
+    },
+    "3": {
+      "class_type": "CLIPTextEncode",
+      "inputs": {
+        "clip": [
+          "2",
+          1
+        ],
+        "text": [
+          "1",
+          0
+        ]
+      }
+    },
+    "4": {
+      "class_type": "CLIPTextEncode",
+      "inputs": {
+        "clip": [
+          "2",
+          1
+        ],
+        "text": ""
+      }
+    },
+    "5": {
+      "class_type": "EmptyLatentImage",
+      "inputs": {
+        "width": 1024,
+        "height": 1024,
+        "batch_size": 1
+      }
+    },
+    "6": {
+      "class_type": "KSampler",
+      "inputs": {
+        "model": [
+          "2",
+          0
+        ],
+        "positive": [
+          "3",
+          0
+        ],
+        "negative": [
+          "4",
+          0
+        ],
+        "latent_image": [
+          "5",
+          0
+        ],
+        "seed": [
+          "1",
+          1
+        ],
+        "steps": 20,
+        "cfg": 7.0,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "denoise": 1.0
+      }
+    },
+    "7": {
+      "class_type": "VAEDecode",
+      "inputs": {
+        "samples": [
+          "6",
+          0
+        ],
+        "vae": [
+          "2",
+          2
+        ]
+      }
+    },
+    "8": {
+      "class_type": "SaveImage",
+      "inputs": {
+        "images": [
+          "7",
+          0
+        ],
+        "filename_prefix": [
+          "1",
+          2
+        ]
+      }
+    }
+  },
+  "expected_carousel_outputs": {
+    "prompts": 3,
+    "seeds": [
+      1000,
+      1001,
+      1002
+    ],
+    "filenames": [
+      "KoO_Carousel_01",
+      "KoO_Carousel_02",
+      "KoO_Carousel_03"
+    ],
+    "indices": [
+      1,
+      2,
+      3
+    ]
+  }
+}

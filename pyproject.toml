@@ -1,0 +1,21 @@
+[project]
+name = "koo-nodes-pack"
+version = "1.0.2"
+description = "ComfyUI resolution, image, sampling, noise, latent, finishing and workflow utilities."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = ["aiohttp", "numpy", "Pillow", "torch"]
+license = {file = "LICENSE"}
+
+[project.urls]
+Repository = "https://github.com/kevintronchin-blip/koo-nodes-pack"
+[tool.comfy]
+DisplayName = "KoO Nodes Pack"
+PublisherId = "koo-ai"
+
+[tool.setuptools]
+py-modules = []
+
+[tool.setuptools.packages.find]
+include = ["nodes*", "shared*"]
+exclude = ["tests*", "docs*", "assets*", "installer*"]

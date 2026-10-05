@@ -1,0 +1,87 @@
+{
+  "version": 1,
+  "aspectRatio": "16:9",
+  "width": 1280,
+  "height": 720,
+  "preset": "Archviz Hero",
+  "highLevelDescription": "A serene contemporary residence integrated into a Mediterranean hillside at golden hour",
+  "style": {
+    "aesthetics": "restrained luxury, warm stone, precise detailing",
+    "lighting": "",
+    "medium": "",
+    "composition": ""
+  },
+  "promptDNA": {
+    "high_level_hint": "Hero architectural visualization emphasizing form, approach, and material realism",
+    "aesthetics": "architectural photography, realistic materials, premium archviz",
+    "lighting": "natural light, soft atmospheric shadows, believable reflections",
+    "medium": "photorealistic architectural visualization",
+    "composition": "leading lines, strong facade hierarchy, human-scale foreground"
+  },
+  "guides": {
+    "vertical": [0.22, 0.62],
+    "horizontal": [0.66]
+  },
+  "overlays": {
+    "goldenSpiral": false,
+    "ruleOfThirds": true,
+    "safeZone": false,
+    "safeZonePlatform": "generic"
+  },
+  "snapToGuides": true,
+  "preserveHierarchy": true,
+  "boxes": [
+    {
+      "id": "sky-context",
+      "label": "Sky and Context",
+      "type": "background",
+      "bbox": [0.01, 0.01, 0.99, 0.99],
+      "prompt": "Mediterranean hillside, pale evening sky, mature olive trees, realistic atmospheric depth",
+      "text": "",
+      "negativePrompt": "fantasy landscape, oversaturated sky",
+      "weight": 0.65,
+      "color": "#64748b",
+      "locked": true,
+      "visible": true
+    },
+    {
+      "id": "hero-architecture",
+      "label": "Hero Architecture",
+      "type": "object",
+      "bbox": [0.16, 0.13, 0.86, 0.76],
+      "prompt": "low horizontal villa, warm limestone, deep shaded glazing, accurate construction detail",
+      "text": "",
+      "negativePrompt": "warped walls, impossible structure, fisheye distortion",
+      "weight": 1.5,
+      "color": "#22d3ee",
+      "locked": false,
+      "visible": true
+    },
+    {
+      "id": "approach",
+      "label": "Approach",
+      "type": "foreground",
+      "bbox": [0.0, 0.65, 1.0, 1.0],
+      "prompt": "textured stone path and dry grasses forming leading lines toward the entrance",
+      "text": "",
+      "negativePrompt": "clutter",
+      "weight": 0.9,
+      "color": "#f59e0b",
+      "locked": false,
+      "visible": true
+    },
+    {
+      "id": "human-scale",
+      "label": "Human Scale",
+      "type": "object",
+      "bbox": [0.69, 0.55, 0.78, 0.82],
+      "prompt": "one casually dressed adult walking toward the entrance, subtle and naturally scaled",
+      "text": "",
+      "negativePrompt": "crowd, posed fashion model",
+      "weight": 0.5,
+      "color": "#a78bfa",
+      "locked": false,
+      "visible": true
+    }
+  ]
+}

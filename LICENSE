@@ -1,0 +1,42 @@
+KoO Open Customisation License v1.0
+Copyright (c) 2026 KoO.Ai
+
+1. Permission
+Permission is granted, free of charge, to any person obtaining a copy of this
+software and its associated documentation (the "Software") to use it for
+personal or commercial purposes, copy it, modify it, create forks and customised
+editions, and redistribute original or modified copies, including for a fee,
+subject to the conditions below.
+
+2. Attribution and notices
+All redistributed copies or substantial portions of the Software, including
+modified, forked and customised versions, must preserve this license, its title,
+the copyright notice, and attribution to KoO.Ai. They must include the link
+https://youtube.com/@kooai-o9t in their accompanying documentation or notices.
+These notices must remain accessible to recipients.
+
+3. Modified, forked and customised versions
+Any modified, forked or customised version must retain the original KoO product
+name and append the creator's own customisation, fork or edition name. For
+example, "KoO Apes Prompter - Example Edition" or "KoO Nodes Pack - Example Fork".
+Its documentation and product description must clearly identify it as an
+unofficial modified version, describe that it has been modified, and identify
+the party responsible for the modifications. It must never imply that it is an
+official KoO.Ai release or that KoO.Ai endorses it. This condition also applies
+when a modified version is presented publicly without redistributing its source.
+Unmodified redistributed copies must preserve the original product name and
+attribution and must not misrepresent their distributor as KoO.Ai.
+
+4. Third-party components
+Third-party components retain their own licenses and copyright notices. This
+license applies only to the Software owned by KoO.Ai and does not replace,
+restrict or grant rights to third-party components. Preserve their required
+licenses and notices, including those listed in THIRD_PARTY_NOTICES.md.
+
+5. No warranty or liability
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+KoO.Ai, THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR ITS USE OR OTHER DEALINGS.

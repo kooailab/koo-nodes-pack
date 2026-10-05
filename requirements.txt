@@ -1,0 +1,5 @@
+# These libraries are normally already provided by a compatible ComfyUI install.
+aiohttp
+numpy
+Pillow
+torch
