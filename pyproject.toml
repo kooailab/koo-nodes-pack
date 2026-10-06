@@ -8,7 +8,7 @@ dependencies = ["aiohttp", "numpy", "Pillow", "torch"]
 license = {file = "LICENSE"}
 
 [project.urls]
-Repository = "https://github.com/kevintronchin-blip/koo-nodes-pack"
+Repository = "https://github.com/kooailab/koo-nodes-pack"
 [tool.comfy]
 DisplayName = "KoO Nodes Pack"
 PublisherId = "koo-ai"
