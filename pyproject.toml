@@ -1,6 +1,6 @@
 [project]
 name = "koo-nodes-pack"
-version = "1.0.2"
+version = "1.0.3"
 description = "ComfyUI resolution, image, sampling, noise, latent, finishing and workflow utilities."
 readme = "README.md"
 requires-python = ">=3.10"

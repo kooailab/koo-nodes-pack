@@ -396,7 +396,7 @@ function drawUI(node, ctx) {
   drawRound(ctx, l.outputPath, TOKENS.background, TOKENS.border, 1, 5);
   drawText(ctx, ellipsize(ctx, activeOutputFolder(node), l.outputPath.w - 18), l.outputPath.x + 9, l.outputPath.y + l.outputPath.h / 2 + 1, 12, TOKENS.textSecondary, "600");
   drawButton(ctx, node, l.outputSet, "Set Folder", "outputSet");
-  drawButton(ctx, node, l.outputOpen, "Open Folder", "outputOpen");
+  drawButton(ctx, node, l.outputOpen, "Copy Path", "outputOpen");
   drawButton(ctx, node, l.autoSave, `Auto Save: ${state.autoSave ? "ON" : "OFF"}`, "autoSave", state.autoSave);
   drawText(ctx, "Filename Prefix", l.prefix.x, l.prefix.y - 10, 11, TOKENS.textMuted, "750");
   drawRound(ctx, l.prefix, TOKENS.background, TOKENS.border, 1, 5);
@@ -932,25 +932,16 @@ async function setOutputFolder(node) {
   }
 }
 
-async function openOutputFolder(node) {
-  node._kooFinisherStatus = "Opening folder...";
-  node.setDirtyCanvas(true, true);
+async function copyOutputFolder(node) {
+  const folder = activeOutputFolder(node);
   try {
-    const response = await fetch("/koo/finisher/open_folder", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ output_folder: getState(node).outputFolder }),
-    });
-    const data = await response.json();
-    if (!response.ok || !data.ok) throw new Error(data.error || "Could not open folder");
-    if (!getState(node).outputFolder) node._kooFinisherDefaultOutputFolder = data.output_folder || node._kooFinisherDefaultOutputFolder;
-    node._kooFinisherStatus = "Folder opened";
+    await navigator.clipboard.writeText(folder);
+    node._kooFinisherStatus = "Output path copied";
   } catch (error) {
-    node._kooFinisherStatus = "Open folder failed";
-    console.warn("[KOO FINISHER] Open folder failed", error);
-  } finally {
-    node.setDirtyCanvas(true, true);
+    prompt("Copy output folder path", folder);
+    node._kooFinisherStatus = "Output path ready to copy";
   }
+  node.setDirtyCanvas(true, true);
 }
 
 async function saveImage(node) {
@@ -1095,7 +1086,7 @@ if (SHOULD_REGISTER_KOO_FINISHER) app.registerExtension({
       if (item.kind === "button" && item.name === "presetSave") presetAction(this,"save");
       if (item.kind === "button" && item.name === "lut") showLutMenu(this, event);
       if (item.kind === "button" && item.name === "outputSet") setOutputFolder(this);
-      if (item.kind === "button" && item.name === "outputOpen") openOutputFolder(this);
+      if (item.kind === "button" && item.name === "outputOpen") copyOutputFolder(this);
       if (item.kind === "button" && item.name === "format") showFormatMenu(this, event);
       if (item.kind === "button" && item.name === "reset") resetNode(this);
       if (item.kind === "button" && item.name === "bypass") setState(this, "bypass", !getState(this).bypass);

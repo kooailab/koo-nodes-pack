@@ -66,3 +66,4 @@ test-results/
 *.key
 *.p12
 *.pfx
+.test-comfy/

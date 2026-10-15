@@ -1,12 +1,12 @@
 # KoO Nodes Pack
 
-Resolution, cropping, sampling, noise, latent conversion, image finishing and workflow utilities for ComfyUI. All existing nodes remain in this package. KoO Apes Prompter is a separate optional project and is not required.
+Resolution, cropping, sampling, noise, latent conversion, image finishing and workflow utilities for ComfyUI. All primary image-processing and utility nodes remain in this package. KoO Apes Prompter is a separate optional project and is not required.
 
-Version **1.0.2**, GitHub source release; Registry publication pending. Licensed under the KoO Open Customisation License v1.0, Copyright (c) 2026 KoO.Ai. See [LICENSE](LICENSE). Registry publisher: **KoO.Ai** (`koo-ai`). GitHub repository: [koo-nodes-pack](https://github.com/kevintronchin-blip/koo-nodes-pack).
+Version **1.0.3**. Registry and Manager availability depend on moderation approval. Licensed under the KoO Open Customisation License v1.0, Copyright (c) 2026 KoO.Ai. See [LICENSE](LICENSE). Registry publisher: **KoO.Ai** (`koo-ai`). GitHub repository: [koo-nodes-pack](https://github.com/kooailab/koo-nodes-pack).
 
 ## Install
 
-1. Download the source ZIP from [koo-nodes-pack](https://github.com/kevintronchin-blip/koo-nodes-pack).
+1. Download the source ZIP from [koo-nodes-pack](https://github.com/kooailab/koo-nodes-pack).
 2. Extract the project as `ComfyUI/custom_nodes/koo-nodes-pack`. Make sure `__init__.py` is directly inside that folder, not inside a second nested folder.
 3. Use ComfyUI's Python environment to install `requirements.txt` if the listed libraries are missing, then restart ComfyUI and refresh your browser.
 4. Add a node from the KoO categories.
@@ -23,13 +23,13 @@ For Windows portable, run from the portable root:
 python_embeded\python.exe -m pip install -r ComfyUI\custom_nodes\koo-nodes-pack\requirements.txt
 ```
 
-These are manual setup commands; the plugin never installs Python packages at runtime. After publication, this project can also be installed through ComfyUI Manager or Registry under package ID `koo-nodes-pack`. That ID has not been registered or reserved.
+These are manual setup commands; the plugin never installs Python packages at runtime. After publication, this project can also be installed through ComfyUI Manager or Registry under package ID `koo-nodes-pack`.
 
 ## Requirements
 
 A compatible, updated ComfyUI installation with Python 3.10 or newer. `torch`, `numpy`, `Pillow` and `aiohttp` are declared dependencies and normally already supplied by ComfyUI. ComfyUI modules (`folder_paths`, `comfy`, `server`, `nodes`, `node_helpers`, `comfy_api.latest`) come from ComfyUI itself. Keep ComfyUI's compatible PyTorch build; do not install an unrelated system Python build.
 
-LUTs, GGUF models and AI servers are optional feature resources. Missing AI backends do not prevent package import. Tkinter is imported only when the desktop folder picker is used; if it is absent, enter the folder manually. The retained developer-only `installer/` is excluded from Registry and manual runtime packages; it is never run during plugin installation or import.
+LUTs are optional feature resources. Tkinter is imported only when the desktop folder picker is used; if it is absent, enter the folder manually.
 
 ## Included nodes
 
@@ -56,13 +56,12 @@ LUTs, GGUF models and AI servers are optional feature resources. Missing AI back
 | `KoOSigmaEqualizer` | KoO Sigma Schedule Designer |
 | `KoOTileMerger` | KoO Tile Merger |
 | `KoOTileSplitter` | KoO Tile Splitter |
-| `KoOVisualPromptDirector` | KoO Visual Prompt Director |
 | `KoOWorkflowPresetManager` | KoO Workflow Preset Manager |
 | `KoO_CropDataUnpack` | KoO Crop Data Unpack |
 | `KoO_LoadImageCropNext` | KoO.Load Image & Crop Next |
 | `KooLoadImageCrop` | KoO.Load Image & Crop |
 
-All node IDs, display names and saved workflow behavior are retained. Legacy aliases remain included.
+All retained node IDs, display names and saved workflow behavior are unchanged. Legacy aliases remain included.
 
 ## Basic examples
 
@@ -72,7 +71,7 @@ All node IDs, display names and saved workflow behavior are retained. Legacy ali
 - Use **KoO Krea Still Latent → 4D** when a single-frame Krea latent needs the normal 4D latent representation.
 - **KoO Carousel Prompt Manager** supplies prompts to the included executor. A minimal API graph is provided in `docs/examples/`.
 
-Existing Ideogram layout workflows and the carousel API example are retained in [docs/examples](docs/examples). Read the [node guide](docs/node-guide.md) for detailed Prompt Director configuration and node behavior. API-format JSON examples are for API submission; they are not all drag-and-drop frontend workflows.
+Existing Ideogram layout workflows and the carousel API example are retained in [docs/examples](docs/examples). Read the [node guide](docs/node-guide.md) for node behavior. API-format JSON examples are for API submission; they are not all drag-and-drop frontend workflows.
 
 Finisher stores new LUT folder settings in ComfyUI user data under `KoO/finisher/settings.json`. Existing `nodes/koo_finisher/config/settings.json` remains a read-only fallback until new settings are saved. Personal settings are excluded from Git and Registry packaging.
 
@@ -81,9 +80,8 @@ Finisher stores new LUT folder settings in ComfyUI user data under `KoO/finisher
 - **Node missing:** inspect the ComfyUI startup log, install declared dependencies using ComfyUI's Python and confirm that there is no nested project folder.
 - **Frontend controls missing:** refresh the browser after restart; check the browser console. This package exports `WEB_DIRECTORY = "./web"`.
 - **Duplicate node IDs:** use one copy of this package. Older separately installed KoO node folders may register the same IDs; back up those folders and disable redundant copies before testing.
-- **Prompt Director unavailable:** configure the selected external provider or llama-server and a compatible model. Other nodes remain usable.
 - **LUTs missing:** set your own LUT folder; no developer LUT path is included in the release.
-- **Desktop folder buttons unavailable remotely:** open ComfyUI locally through localhost, or enter your output folder manually. The folder dialog/open actions are local-only; cross-origin writes are rejected.
+- **Desktop folder buttons unavailable remotely:** open ComfyUI locally through localhost, or enter your output folder manually. The folder dialog and direct image export require localhost; cross-origin writes are rejected. Copy Path copies the output directory without launching a desktop program.
 
 ## Update
 

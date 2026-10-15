@@ -1,6 +1,14 @@
 # Changelog
 
-## 1.0.2 — release candidate, unpublished
+## 1.0.3
+
+Removed Visual Prompt Director from the public distribution. All primary KoO image-processing and utility nodes remain available. Improved package security and Registry compliance.
+
+- Replace Finisher Open Folder with Copy Path; remove all runtime process and file launching.
+- Restrict custom output writes to same-origin localhost requests.
+- Validate tests, metadata, version availability and the official archive before publishing.
+
+## 1.0.2 — Registry flagged
 
 - Freeze Finisher preview persistence, A/B wipe, neutral Midtones/Whites/Blacks,
   Auto Save, format dropdown and compact layout fixes.
@@ -21,4 +29,4 @@
 
 ## 1.0.1 — existing local package version
 
-Existing package metadata and README identified version 1.0.1. The older build report describes 1.0.0. No standalone Git release history was available. The separately versioned Prompt Director installer/component is not the Nodes Pack version.
+Existing package metadata and README identified version 1.0.1. The older build report describes 1.0.0. No standalone Git release history was available.

@@ -1,10 +1,7 @@
 from __future__ import annotations
 
 import io
-import os
 import re
-import subprocess
-import sys
 import time
 import uuid
 from collections import OrderedDict
@@ -175,20 +172,6 @@ def save_finished_image(payload: dict[str, Any]) -> dict[str, Any]:
         files.append({"filename": path.name, "subfolder": "", "type": "custom", "format": fmt, "path": str(path), "output_folder": str(output_folder)})
 
     return {"ok": True, "files": files, "count": len(files)}
-
-
-def open_output_folder(value: str | None) -> dict[str, Any]:
-    folder = _resolve_output_folder(value)
-    try:
-        if sys.platform.startswith("win"):
-            os.startfile(str(folder))  # type: ignore[attr-defined]
-        elif sys.platform == "darwin":
-            subprocess.Popen(["open", str(folder)], shell=False)
-        else:
-            subprocess.Popen(["xdg-open", str(folder)], shell=False)
-    except Exception as exc:
-        raise RuntimeError(f"KoO Finisher: could not open output folder: {folder}") from exc
-    return {"ok": True, "output_folder": str(folder)}
 
 
 def select_output_folder(value: str | None) -> dict[str, Any]:

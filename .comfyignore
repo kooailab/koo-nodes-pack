@@ -62,3 +62,13 @@ test-results/
 *.pfx
 RELEASE_TODO.md
 RELEASE_CHECKLIST.md
+
+# Components excluded from the public Nodes Pack distribution
+nodes/visual_prompt_director/
+web/visual_prompt_director/
+KoO_BACKUPS/
+nodes/apes_prompter*/
+web/apes_prompter*/
+scripts/
+RELEASING.md
+.test-comfy/

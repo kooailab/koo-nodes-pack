@@ -325,8 +325,8 @@ class KoOFinisherRouteAndFrontendTests(unittest.TestCase):
             request = SimpleNamespace(headers={'Origin': 'https://foreign.invalid'}, host='localhost:8188', remote='127.0.0.1')
             self.assertEqual(asyncio.run(handlers['/koo/finisher/save'](request)).status, 403)
             request = SimpleNamespace(headers={}, host='192.0.2.1:8188', remote='192.0.2.2')
-            with patch.object(routes, 'open_output_folder') as opener:
-                self.assertEqual(asyncio.run(handlers['/koo/finisher/open_folder'](request)).status, 403)
+            with patch.object(routes, 'select_output_folder') as opener:
+                self.assertEqual(asyncio.run(handlers['/koo/finisher/select_folder'](request)).status, 403)
                 opener.assert_not_called()
         finally:
             routes._ROUTES_REGISTERED = False
@@ -356,7 +356,6 @@ class KoOFinisherRouteAndFrontendTests(unittest.TestCase):
                 ("GET", "/koo/finisher/lut_data"),
                 ("POST", "/koo/finisher/preview"),
                 ("POST", "/koo/finisher/save"),
-                ("POST", "/koo/finisher/open_folder"),
                 ("POST", "/koo/finisher/select_folder"),
             ],
         )
@@ -376,7 +375,6 @@ class KoOFinisherRouteAndFrontendTests(unittest.TestCase):
             "/koo/finisher/lut_config",
             "/koo/finisher/preview",
             "/koo/finisher/save",
-            "/koo/finisher/open_folder",
             "/koo/finisher/select_folder",
         ):
             self.assertIn(route_path, source)
@@ -387,7 +385,7 @@ class KoOFinisherRouteAndFrontendTests(unittest.TestCase):
 
 
 class KoONodesPackageImportTests(unittest.TestCase):
-    def test_root_package_import_registers_one_finisher_and_26_total_nodes(self):
+    def test_root_package_import_registers_one_finisher_and_25_total_nodes(self):
         comfy = make_module("comfy")
         comfy.__path__ = []
         comfy_sample = make_module("comfy.sample", prepare_noise=lambda *args, **kwargs: None)
@@ -435,8 +433,8 @@ class KoONodesPackageImportTests(unittest.TestCase):
                 sys.modules[root_package_name] = root_package
                 package_spec.loader.exec_module(root_package)
             self.assertEqual(root_package.WEB_DIRECTORY, "./web")
-            self.assertEqual(len(root_package.NODE_CLASS_MAPPINGS), 26)
-            self.assertEqual(len(root_package.NODE_DISPLAY_NAME_MAPPINGS), 26)
+            self.assertEqual(len(root_package.NODE_CLASS_MAPPINGS), 25)
+            self.assertEqual(len(root_package.NODE_DISPLAY_NAME_MAPPINGS), 25)
             self.assertEqual(list(root_package.NODE_CLASS_MAPPINGS).count("KoOFinisher"), 1)
             self.assertEqual(root_package.NODE_DISPLAY_NAME_MAPPINGS["KoOFinisher"], "KoO Finisher")
         finally:

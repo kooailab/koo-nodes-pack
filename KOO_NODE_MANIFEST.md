@@ -1,6 +1,6 @@
 # KOO_NODE_MANIFEST
 
-KoO Nodes v1.0.2 registered-node manifest, generated from the current development package.
+KoO Nodes v1.0.3 registered-node manifest, generated from the current development package.
 
 | Internal ID | Display name | Original source package | Release Python file | Release frontend file | Category preserved | Dependencies | Status | Regression status |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -24,7 +24,6 @@ KoO Nodes v1.0.2 registered-node manifest, generated from the current developmen
 | KoOSigmaEqualizer | KoO Sigma Equalizer | comfyui-koo-resolution-next | nodes/resolution_next/sigma_equalizer.py | web/resolution_next/koo_sigma_equalizer.js | KoO Tools / Sampling | ComfyUI runtime only | included | static only |
 | KoOTileMerger | KoO Tile Merger | KoO-Tiled-Enhancer | nodes/tiled_enhancer/nodes.py | none | KoO/Magnific | ComfyUI runtime only | included | static only |
 | KoOTileSplitter | KoO Tile Splitter | KoO-Tiled-Enhancer | nodes/tiled_enhancer/nodes.py | none | KoO/Magnific | ComfyUI runtime only | included | static only |
-| KoOVisualPromptDirector | KoO Visual Prompt Director | Native KoO Director AI implementation | nodes/visual_prompt_director/nodes.py | web/visual_prompt_director/koo_visual_prompt_director.js | KoO | Discovered friendly profiles plus optional OpenAI-compatible or owned llama.cpp VLM backend | included | focused discovery/unit/static/process tests |
 | KoOWorkflowPresetManager | KoO Workflow Preset Manager | ComfyUI-KoO-WorkflowPresetManager | nodes/workflow_preset_manager/nodes.py | web/workflow_preset_manager/js/koo_workflow_preset_manager.js | KoO Tools / Utility | ComfyUI runtime only | included | static only |
 | KoO_CropDataUnpack | KoO Crop Data Unpack | comfyui-koo-load-image-crop-next | nodes/load_image_crop_next/nodes.py | none | KoO Tools / Image | ComfyUI runtime only | included | static only |
 | KoO_LoadImageCropNext | KoO.Load Image & Crop Next | comfyui-koo-load-image-crop-next | nodes/load_image_crop_next/nodes.py | web/load_image_crop_next/koo_load_image_crop_next.js | KoO Tools / Image | ComfyUI runtime only | included | static only |

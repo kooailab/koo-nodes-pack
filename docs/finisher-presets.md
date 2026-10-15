@@ -104,7 +104,7 @@ Both effects bypass all new processing exactly at 0 and preserve dimensions.
 
 Preset **schema 2** marks corrected Exposure and recalibrated lens semantics.
 Schema 1 is rejected rather than silently reinterpreted; there are no existing
-user presets to migrate. The package version remains 1.0.2. Stored values are
+user presets to migrate. The package version is 1.0.3; the preset component version remains 1.0.2. Stored values are
 only EV and semantic 0–100 strengths, never internal radius, pixels or multipliers.
 
 The same operations run through the existing reduced preview and full-resolution

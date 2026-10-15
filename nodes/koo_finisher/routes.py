@@ -5,7 +5,7 @@ import ipaddress
 from urllib.parse import urlsplit
 from aiohttp import web
 
-from .cache import default_output_folder, open_output_folder, render_preview, save_finished_image, select_output_folder
+from .cache import default_output_folder, render_preview, save_finished_image, select_output_folder
 from .processing import load_settings, parse_cube_lut, resolve_lut_path, save_settings, scan_lut_folder
 from . import presets
 
@@ -138,19 +138,11 @@ def register_routes() -> bool:
         except Exception as exc:
             return web.json_response({"ok": False, "error": str(exc)}, status=400)
 
-    @guarded_post("/koo/finisher/save")
+    @guarded_post("/koo/finisher/save", local_only=True)
     async def koo_finisher_save(request: web.Request) -> web.Response:
         try:
             data = await request.json()
             return web.json_response(save_finished_image(data))
-        except Exception as exc:
-            return web.json_response({"ok": False, "error": str(exc)}, status=400)
-
-    @guarded_post("/koo/finisher/open_folder", local_only=True)
-    async def koo_finisher_open_folder(request: web.Request) -> web.Response:
-        try:
-            data = await request.json()
-            return web.json_response(open_output_folder(str(data.get("output_folder", "") or "")))
         except Exception as exc:
             return web.json_response({"ok": False, "error": str(exc)}, status=400)
 
