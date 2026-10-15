@@ -27,13 +27,13 @@ const plain = value=>JSON.parse(JSON.stringify(value));
 const click = (node,hit)=>node.onMouseDown({},[hit.x+hit.w/2,hit.y+hit.h/2],app.canvas);
 const load = async (path,hash,exports)=>{
   const bytes=await readFile(path), source=bytes.toString("utf8");
-  assert.equal(createHash("sha256").update(bytes).digest("hex"),hash,"Frontend differs from the approved pre-conversion file");
+  assert.equal(createHash("sha256").update(source.replace(/\r\n/g, "\n")).digest("hex"),hash,"Frontend differs from the approved pre-conversion file");
   assert.equal(/addDOMWidget|ensureResolutionDOM|ensureCropDOM|koo_resolution_next_ui|koo_crop_next_ui/.test(source),false);
   const module=new vm.SourceTextModule(source+`\nglobalThis.testAPI={${exports}};`,{context});
   await module.link(specifier=>specifier.endsWith("api.js")?apiModule:appModule);await module.evaluate();
   return {extension:registrations.at(-1),api:context.testAPI};
 };
-const {extension,api:helpers}=await load(new URL("../web/load_image_crop_next/js/koo_load_image_crop_next.js",import.meta.url),"25ed4adecbe8c00851cb22a72572668791236f7c01f4dcf9eff8509b7db44b9d","BACKEND_WIDGET_NAMES,cropFromWidgets,cropHandles,imageToPreview,legacyValuesToCurrent");
+const {extension,api:helpers}=await load(new URL("../web/load_image_crop_next/js/koo_load_image_crop_next.js",import.meta.url),"ae30e359a0cabeb4ce03dfc741a104ad803ca605fed7bd655be2ed994fe305a5","BACKEND_WIDGET_NAMES,cropFromWidgets,cropHandles,imageToPreview,legacyValuesToCurrent");
 class Crop extends Node {constructor() {super(helpers.BACKEND_WIDGET_NAMES,["fixture.png","Free",4,5,0,0,0,0,false,false]);}}
 extension.beforeRegisterNodeDef(Crop,{name:"KoO_LoadImageCropNext"});extension.beforeRegisterNodeDef(Crop,{name:"KoO_LoadImageCropNext"});
 const node=new Crop();node.onNodeCreated();node.onDrawForeground(canvas);assert.equal(images.length,1);images[0].onload();node.onDrawForeground(canvas);

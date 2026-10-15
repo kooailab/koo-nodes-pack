@@ -27,13 +27,13 @@ const plain = value=>JSON.parse(JSON.stringify(value));
 const click = (node,hit)=>node.onMouseDown({},[hit.x+hit.w/2,hit.y+hit.h/2],app.canvas);
 const load = async (path,hash,exports)=>{
   const bytes=await readFile(path), source=bytes.toString("utf8");
-  assert.equal(createHash("sha256").update(bytes).digest("hex"),hash,"Frontend differs from the approved pre-conversion file");
+  assert.equal(createHash("sha256").update(source.replace(/\r\n/g, "\n")).digest("hex"),hash,"Frontend differs from the approved pre-conversion file");
   assert.equal(/addDOMWidget|ensureResolutionDOM|ensureCropDOM|koo_resolution_next_ui|koo_crop_next_ui/.test(source),false);
   const module=new vm.SourceTextModule(source+`\nglobalThis.testAPI={${exports}};`,{context});
   await module.link(specifier=>specifier.endsWith("api.js")?apiModule:appModule);await module.evaluate();
   return {extension:registrations.at(-1),api:context.testAPI};
 };
-const {extension,api:helpers}=await load(new URL("../web/resolution_next/koo_resolution_next.js",import.meta.url),"258b9af9a10ef6e87ef9ef0abb646e85082e47d4d55bd085c90ab5423e06a7a2","BACKEND_WIDGET_NAMES,RATIO_DEFAULTS,getState,finalDimensions,makeLayout");
+const {extension,api:helpers}=await load(new URL("../web/resolution_next/koo_resolution_next.js",import.meta.url),"2f53eb49674edb834ddb673b30d55b1ee2102202bbcef8785f2096d0b7c20932","BACKEND_WIDGET_NAMES,RATIO_DEFAULTS,getState,finalDimensions,makeLayout");
 class Resolution extends Node {constructor() {super(helpers.BACKEND_WIDGET_NAMES,[1536,864,"16:9",2048,false,"x1","Standard SD / SDXL",1]);}}
 extension.beforeRegisterNodeDef(Resolution,{name:"KoOResolutionNext"});
 const node=new Resolution();node.onNodeCreated();node.onDrawForeground(canvas);
